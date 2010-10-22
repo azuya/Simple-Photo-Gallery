@@ -1,3 +1,16 @@
-This is the simple-photo-gallery Kohana module. Please refer to the INSTALL file for installation instructions.
+SIGAL: Simple Image GALlery v 0.1
+---------------------------------
+
+This is a very simple image gallery for Kohana 3.0.x
+It is based upon the simple-photo-gallery for Kohana 2.3.4 / 2.4
+For better incorporation in your own website, it no longer uses a template view or any javascript.
+Modules it depends on:
+ * Image
+ * (Cache?)
+ * an ORM-module (in v0.1 only the Kohana ORM Models are included, but they can be extended for others...)
+ * an Auth-module (in v0.1 only the Kohana Auth module is included, but it can be extended for others...)
+
+Please refer to the INSTALL file for installation instructions.
+
 
 To stay current, check this module's web page at http://projects.kohanaphp.com/projects/show/simple-photo-gallery
