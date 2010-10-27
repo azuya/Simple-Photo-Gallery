@@ -3,8 +3,8 @@
 class Sigal_Model_Gallery_ORM extends ORM implements Sigal_Gallery {
 
 	protected $_has_many = array(
-		'photos' => array(
-			'model' => 'photo_orm',
+		'images' => array(
+			'model' => 'image_orm',
 			'foreign_key' => 'gallery_id'
 	));
 
@@ -44,28 +44,40 @@ class Sigal_Model_Gallery_ORM extends ORM implements Sigal_Gallery {
 		return $this->find_all();
 	}
 
-	public function thumbnail()
+	public function read_images()
 	{
-		//return ORM::factory('Photo_ORM')->;
-
-		return $this->photos->find();
+		return $this->images->find_all();
 	}
 
-	public function find_photos($page_number)
+	public function thumbnail()
 	{
-		$per_page = Kohana::config('gallery.photos_per_page');
-		return $this->photos->limit($per_page)->offset($page_number*$per_page-$per_page)->find_all();
+		return $this->images->find();
+	}
+
+	public function find_by_slug($slug)
+	{
+		return $this->where('slug', '=', $slug)->find();
+	}
+
+
+
+
+
+	public function find_images($page_number)
+	{
+		$per_page = Kohana::config('gallery.items_per_page');
+		return $this->images->limit($per_page)->offset($page_number*$per_page-$per_page)->find_all();
 	}
 
 	public function find_related($model)
 	{
-		return $this->photos->find_all();
+		return $this->images->find_all();
 	}
 
 	public function find_thumbnail()
 	{
-		$photos = $this->photos;
-		return $photos->order_by('order')->limit(1)->find();
+		$images = $this->image;
+		return $images->order_by('order')->limit(1)->find();
 	}
 
 }

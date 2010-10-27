@@ -1,7 +1,7 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-interface Sigal_Photo {
+interface Sigal_Image {
 
-	public function read_all();
+//	public function read_all();
 	
 }

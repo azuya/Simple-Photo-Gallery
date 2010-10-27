@@ -1,13 +1,13 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 
-class Sigal_Model_Photo_ORM extends ORM implements Sigal_Photo {
+class Sigal_Model_Image_ORM extends ORM implements Sigal_Image {
 
 	protected $_belongs_to = array(
-		'album' => array(
+		'gallery' => array(
 			'model' => 'gallery_orm',
 	));
 
-	protected $_table_name = 'photos';
+	protected $_table_name = 'images';
 
 	protected $_table_columns = array(
 		'id' => array(),
@@ -15,7 +15,7 @@ class Sigal_Model_Photo_ORM extends ORM implements Sigal_Photo {
 		'description' => array(),
 		'filename' => array(),
 		'order' => array(),
-		'album_id' => array(),
+		'gallery_id' => array(),
 	);
 
 	protected $_rules = array(
@@ -30,8 +30,9 @@ class Sigal_Model_Photo_ORM extends ORM implements Sigal_Photo {
 
 	);
 
-	public function  read_all() {
-		
+	public function count_all()
+	{
+		return $this->count_all();
 	}
 
 	protected function delete_file()

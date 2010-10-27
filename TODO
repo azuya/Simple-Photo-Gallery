@@ -1,5 +1,6 @@
 * Make different ORM's (Automodeler, Jelly,...)
 * Make different Authentications possible (Auth, ACL,...)
 * Caching
+* Query optimalisation
 
 ORM/Pagination/Auth/Image

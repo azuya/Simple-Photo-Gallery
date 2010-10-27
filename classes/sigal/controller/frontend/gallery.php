@@ -4,17 +4,15 @@ class Sigal_Controller_Frontend_Gallery extends Controller {
 
 	public function action_index()
 	{
-		
 		$this->request->response = View::factory('sigal/frontend/galleries')
 			->set('galleries', Sigal::factory('gallery')->read_all());
-		 
 	}
 
 	public function action_view($slug = NULL)
 	{
 		try
 		{
-			$album = Gallery::factory()->find_by_slug($slug);
+			$gallery = Sigal::factory('gallery')->find_by_slug($slug);
 		} 
 		catch (Exception $exc)
 		{
@@ -22,12 +20,12 @@ class Sigal_Controller_Frontend_Gallery extends Controller {
 		}
 		$paging =  Pagination::factory(array(
 			'view'			 => 'sigal/pagination',
-			'total_items'    => Gallery::factory()->read_related_photos->count_all(),
-			'items_per_page'    => Kohana::config('sigal.photos_per_page'),
+			'total_items'    => count($gallery->read_images()),
+			'items_per_page'    => Kohana::config('sigal.items_per_page'),
 		));
-		$this->request->response = View::factory('album/view')
-			->set('title', $album->album_name)
-			->set('photos', $album->read_related_photos())
+		$this->request->response = View::factory('sigal/frontend/gallery')
+			->set('title', $gallery->name)
+			->set('images', $gallery->read_images())
 			->set('pages', $paging);
 	}
 }

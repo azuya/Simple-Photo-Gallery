@@ -5,7 +5,7 @@ abstract class Sigal_Core {
 	 * Creates and returns a new model, based on the model drivers
 	 *
 	 * @chainable
-	 * @param   string  model name
+	 * @param   string  model name: 'gallery' or 'image'
 	 * @return  mixed
 	 */
 	public static function factory($model)
