@@ -1,4 +1,5 @@
-* Make different ORM's possible (Automodeler, Jelly,...)
+* Make different ORM's (Automodeler, Jelly,...)
 * Make different Authentications possible (Auth, ACL,...)
+* Caching
 
 ORM/Pagination/Auth/Image
