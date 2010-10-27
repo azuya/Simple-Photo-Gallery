@@ -1,9 +1,15 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-/*
- * (!) NOT USED
- * Is this controller even necessary? (maybe good for caching?)
- * Why not just link to the actual path?
+/**
+ * (!) DEPRECATED
+ * This is only here for backup-purposes...
+ * Is this controller even necessary?
+ * Sigal just links directly to the actual paths
  * If used, make sure it can show .jpgs, .pngs, and gifs.
+ *
+ * @package    Sigal
+ * @author     Peter Briers
+ * @deprecated
+ * @license    ???
  */
 class Sigal_Controller_Frontend_Image extends Controller
 {
@@ -14,8 +20,8 @@ class Sigal_Controller_Frontend_Image extends Controller
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header('Pragma: public');
-		header('Content-Length: '.filesize(DOCROOT.Kohana::config('sigal.paths.galleries').$gallery_slug.'/thumb_'.$filename));
-		readfile(DOCROOT.Kohana::config('sigal.paths.galleries').$gallery_slug.'/thumb_'.$filename);
+		header('Content-Length: '.filesize(DOCROOT.Kohana::config('sigal.path.galleries').$gallery_slug.'/thumb_'.$filename));
+		readfile(DOCROOT.Kohana::config('sigal.path.galleries').$gallery_slug.'/thumb_'.$filename);
 		exit;
 	}
 
@@ -26,8 +32,8 @@ class Sigal_Controller_Frontend_Image extends Controller
 		header('Expires: 0');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 		header('Pragma: public');
-		header('Content-Length: '.filesize(DOCROOT.Kohana::config('sigal.paths.galleries').$gallery_slug.'/'.$filename));
-		readfile(DOCROOT.Kohana::config('sigal.paths.galleries').$gallery_slug.'/'.$filename);
+		header('Content-Length: '.filesize(DOCROOT.Kohana::config('sigal.path.galleries').$gallery_slug.'/'.$filename));
+		readfile(DOCROOT.Kohana::config('sigal.path.galleries').$gallery_slug.'/'.$filename);
 		exit;
 	}
 }

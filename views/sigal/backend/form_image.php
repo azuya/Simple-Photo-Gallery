@@ -1,5 +1,5 @@
 <?php 
-echo View::factory('sigal/form_errors')->set('errors', $errors);
+echo View::factory('sigal/backend/form_errors')->set('errors', $errors);
 
 echo Form::open(NULL, array('enctype' => 'multipart/form-data'));
 echo	'<div>',

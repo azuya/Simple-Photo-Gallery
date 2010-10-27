@@ -59,6 +59,13 @@ class Sigal_Model_Gallery_ORM extends ORM implements Sigal_Gallery {
 		return $this->where('slug', '=', $slug)->find();
 	}
 
+	public function update_fields($values) {
+		$this->values($values);
+	}
+
+	public function save() {
+		//$this->slug = URL::title($this->name, '-', TRUE);
+	}
 
 
 
@@ -69,15 +76,5 @@ class Sigal_Model_Gallery_ORM extends ORM implements Sigal_Gallery {
 		return $this->images->limit($per_page)->offset($page_number*$per_page-$per_page)->find_all();
 	}
 
-	public function find_related($model)
-	{
-		return $this->images->find_all();
-	}
-
-	public function find_thumbnail()
-	{
-		$images = $this->image;
-		return $images->order_by('order')->limit(1)->find();
-	}
 
 }

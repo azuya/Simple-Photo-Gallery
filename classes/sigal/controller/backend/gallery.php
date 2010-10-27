@@ -5,6 +5,7 @@ class Sigal_Controller_Backend_Gallery extends Controller
 	public function _before()
 	{
 		parent::before();
+		echo 'Auth:', Kohana::debug(Sigal::admin_rights());
 		if( ! Sigal::admin_rights()) {
 			throw new Kohana_Exception('No rights');
 		}
@@ -13,26 +14,25 @@ class Sigal_Controller_Backend_Gallery extends Controller
 	public function action_index()
 	{
 		$this->request->response = View::factory('sigal/backend/index')
-			->set('albums', Gallery::factory()->read_all());
+			->set('galleries', Sigal::factory('gallery')->read_all());
 	}
 
 	public function action_create()
 	{
 		if ($_POST)
 		{
-			$album = Album::factory()->update_fields($_POST);
-			$album->slug = URL::title($album->name, '-', TRUE);
-			if($album->validate()) {
-				$album->save();
+			$gallery = Sigal::factory('gallery')->update_fields($_POST);
+			if($gallery->validate()) {
+				$gallery->save();
 				$this->request->redirect(Route::get('sigal-backend')->uri(array('controller' => 'album', 'action' => 'index')));
 			}
 			else {
 				$form = $_POST;
-				$errors = $album->validate()->errors('sigal');
+				$errors = $gallery->validate()->errors('sigal');
 			}
 		}
-		$this->request->response = View::factory('sigal/backend/form_album')
-			->bind('album'. $album)
+		$this->request->response = View::factory('sigal/backend/form_gallery')
+			->bind('gallery', $gallery)
 			->bind('errors', $errors)
 			->bind('form', $form)
 			->set('action', 'Create');
@@ -43,7 +43,7 @@ class Sigal_Controller_Backend_Gallery extends Controller
 
 		$gallery = Gallery::factory($id);
 		$old_slug = $gallery->slug;
-		$path = Kohana::config('gallery.paths.photos');
+		$path = Kohana::config('gallery.path.photos');
 
 		if ($_POST)
 		{
@@ -77,10 +77,10 @@ class Sigal_Controller_Backend_Gallery extends Controller
 
 	public function delete($id = NULL)
 	{
-		$album = Gallery::factory($id);
+		$gallery = Gallery::factory($id);
 		if(isset($_POST['confirm']))
 		{
-			$album->delete(); // This also deletes related photo DB rows!
+			$gallery->delete(); // This also deletes related photo DB rows!
 			$this->request->redirect(Route::get('sigal-backend')->uri(array('controller'=>'gallery', 'action'=>'index')));
 		}
 		elseif(isset($_POST['cancel']))

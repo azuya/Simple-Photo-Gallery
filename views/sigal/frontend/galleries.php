@@ -7,16 +7,8 @@
 			echo	HTML::anchor(
 						Route::get('sigal-frontend')->uri(array('controller'=>'gallery', 'action'=>'view', 'id'=>$gallery->slug)),
 						HTML::image(
-							/*
-							// Routing for the image-controller
-							Route::url(
-								'sigal-image',
-								array('action'=>'thumbnail', 'slug'=>$gallery->slug, 'file'=>'fubar')//$gallery->thumbnail()->filename)
-							),
-							 */
-							Kohana::config('sigal.paths.galleries').$gallery->thumbnail()->filename,
-							array('alt'=>$gallery->name),
-							TRUE
+							Sigal::full_path($gallery->thumbnail()),
+							array('alt'=>$gallery->name)
 						)
 					);
 			?>

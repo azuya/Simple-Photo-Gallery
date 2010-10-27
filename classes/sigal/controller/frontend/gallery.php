@@ -1,5 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
-
+/**
+ * The basic controller for the frontend
+ *
+ * @package    Sigal
+ * @author     Peter Briers
+ * @license    ???
+ */
 class Sigal_Controller_Frontend_Gallery extends Controller {
 
 	public function action_index()

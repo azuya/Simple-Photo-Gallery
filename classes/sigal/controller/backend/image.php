@@ -2,7 +2,7 @@
 
 class Sigal_Controller_Backend_Photo extends Controller
 {
-	public function _before()
+	public function before()
 	{
 		parent::before();
 		if( ! Sigal::admin_rights()) {

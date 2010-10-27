@@ -7,7 +7,7 @@ return array(
 	'image_height' => 480,
 	'thumbnail_width' => 150,
 	'thumbnail_height' => 150,
-	'paths' => array(
+	'path' => array(
 		'galleries' => 'media/gallery/',
 	),
 	'driver' => array(

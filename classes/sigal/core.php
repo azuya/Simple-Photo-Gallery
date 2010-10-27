@@ -1,4 +1,11 @@
 <?php defined('SYSPATH') or die('No direct script access.');
+/**
+ * The base class for Sigal
+ *
+ * @package    Sigal
+ * @author     Peter Briers
+ * @license    ???
+ */
 abstract class Sigal_Core {
 
 	/**
@@ -24,15 +31,26 @@ abstract class Sigal_Core {
 	 */
 	public static function admin_rights() 
 	{
-		switch (Kohana::config('sigal.drivers.auth')) {
-			case 'Auth':
+		switch (Kohana::config('sigal.driver.auth')) {
+			case 'auth':
 				return (Auth::instance()->logged_in('admin'));
 				break;
-
+			
 			default:
 				return false;
 				break;
 		}
+	}
+
+	/**
+	 * Shorthand for Kohana::config('sigal.path.galleries').$image->gallery->slug.'/'
+	 *
+	 * @param string  The relative path to the filename
+	 */
+	public static function full_path($image, $thumb = FALSE)
+	{
+		$filename = ($thumb === TRUE) ? 'thumb_'.$image->filename : $image->filename;
+		return Kohana::config('sigal.path.galleries').$image->gallery->slug.'/'.$filename;
 	}
 
 	public static function upload_file($file)
