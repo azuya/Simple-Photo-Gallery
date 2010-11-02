@@ -4,3 +4,4 @@
 * Query optimalisation
 
 ORM/Pagination/Auth/Image
+Flash-messages with errors. (cfr. filesystem functions)
