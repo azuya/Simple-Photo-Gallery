@@ -1,11 +1,11 @@
 SIGAL: Simple Image GALlery v 0.1
 ---------------------------------
 
-!!! Not working yet. Working release set for 2010-11-01.
 (!) From version 0.1 to 1.0, there will be a lot of breaks in backward compatibility. Please keep this in mind.
 
 An adaption of the simple-photo-gallery for Kohana 3.0.x
 For better incorporation in your own website, it no longer uses a template view or any javascript.
+It can be used with HMVC.
 Modules it depends on:
  * Image
  * (Cache?)
