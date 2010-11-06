@@ -53,7 +53,8 @@ class Sigal_Model_Image_ORM extends ORM implements Sigal_Interface_Image {
 	public function update_fields($values)
 	{
 		$this->values($values);
-		$this->filename = $values['file']['name']; // (!) This must be set in order to ...
+		if(empty($this->filename))
+			$this->filename = $values['file']['name']; // (!) This must be set in order to ...
 		$this->order = Sigal::set_order($this);
 	}
 

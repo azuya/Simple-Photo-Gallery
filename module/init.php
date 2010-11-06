@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die('No direct script access.');
 /*
- * The uri's can be modified, just make sure the name & attributes stay the same.
+ * Sigal-backend & Sigal-frontend uri's can be modified, just make sure the name & attributes stay the same.
  * 
  * Ex: To use the uri http://yoursite.com/gallery/ for sigal, you can change the frontend route to
  * Route::set('sigal-frontend', 'gallery(/<action>(/<id>))')->default(array('dir....
@@ -13,6 +13,15 @@ Route::set('sigal-backend', 'backend/sigal(/<controller>(/<action>(/<id>)))', ar
 		'action' => 'index'));
 
 Route::set('sigal-frontend', 'sigal(/<action>(/<id>))')
+	->defaults(array(
+		'directory'	=> 'frontend',
+		'controller' => 'gallery',
+		'action' => 'index'));
+
+/*
+ * Leave this one untouched. It is used for HMVC purposes.
+ */
+Route::set('sigal', 'sigal(/<directory>(/<controller>(/<action>(/<id>))))')
 	->defaults(array(
 		'directory'	=> 'frontend',
 		'controller' => 'gallery',

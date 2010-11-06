@@ -1,9 +1,9 @@
-<?php $count = 1; ?>
+<?php $count = 0; ?>
 <p class="sigal_title"><?php echo $title ?></p>
 <div class="sigal_pages"><?php echo $pages ?></div>
-<div id="sigal_gallery">
+<div id="sigal_images">
 	<ul>
-	<?php foreach ($images as $image): ?>
+		<?php foreach ($images as $image): ?>
 		<li <?php if ($count % Kohana::config('sigal.columns') == 0) echo 'class="newline"'; ?> >
 			<div class="sigal_image">
 				<?php
@@ -19,10 +19,10 @@
 				</div>
 			</div>
 		</li>
-	<?php 
-		$count++;
-		endforeach;
-		echo View::factory('profiler/stats');
-	?>
+		<?php
+			$count++;
+			endforeach;
+		?>
 	</ul>
+	<hr class="sigal_clear" />
 </div>

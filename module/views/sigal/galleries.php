@@ -1,4 +1,4 @@
-<?php $count = 1; ?>
+<?php $count = 0; ?>
 <div id="sigal_galleries">
 	<ul>
 	<?php foreach ($galleries as $gallery): ?>
@@ -6,7 +6,7 @@
 			<div class="sigal_gallery">
 				<?php
 				echo	HTML::anchor(
-							Route::get('sigal-frontend')->uri(array('controller'=>'gallery', 'action'=>'view', 'id'=>$gallery->slug)),
+							Route::get('sigal-frontend')->uri(array('action'=>'view', 'id'=>$gallery->slug)),
 							HTML::image(
 								Sigal::image_path($gallery->thumbnail()),
 								array('alt'=>$gallery->name)
@@ -15,14 +15,10 @@
 				?>
 				<div class="sigal_caption">
 					<p class="sigal_name"><?php echo $gallery->name; ?></p>
-					<p class="sigal_description"><?php echo $gallery->description; ?></p>
 				</div>
 			</div>
 		</li>
-	<?php
-		$count++;
-		endforeach;
-		echo View::factory('profiler/stats');
-	?>
+	<? $count++; endforeach; ?>
 	</ul>
+	<hr class="sigal_clear" />
 </div>

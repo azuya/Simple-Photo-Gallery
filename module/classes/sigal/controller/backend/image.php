@@ -11,6 +11,7 @@
 
 class Sigal_Controller_Backend_Image extends Controller
 {
+	
 /*
 	public function before()
 	{
@@ -35,18 +36,10 @@ class Sigal_Controller_Backend_Image extends Controller
 			$validation = Sigal::validate_image($merged);
 			if($validation->check())
 			{
-				//try
-				//{
-					$image->update_fields($merged);  // Execute this first, because it sets the filename, which is needed for uploading...
-					$image->upload($merged['file']['tmp_name']); // (!) Saves the image & thumbnail
-					$image->save();
-
-				//}
-				//catch(Exception $e)
-				//{
-				//	throw new Sigal_Exception($e . 'Something went wrong with the image uploading.');
-				//}
-				$this->request->redirect(Route::get('sigal-backend')->uri(array('controller' => 'gallery', 'action' => 'images', 'id'=>$gallery_id)));
+				$image->update_fields($merged);  // Execute this first, because it sets the filename, which is needed for uploading...
+				$image->upload($merged['file']['tmp_name']); // (!) Saves the image & thumbnail
+				$image->save();
+				$this->request->redirect(Route::get('sigal-backend')->uri(array('controller'=>'gallery' , 'action'=>'images' , 'id'=>$gallery_id)));
 			}
 			else
 			{
@@ -57,13 +50,13 @@ class Sigal_Controller_Backend_Image extends Controller
 		$this->request->response = View::factory('sigal/form/image')
 			->bind('errors', $errors)
 			->bind('form', $form)
+			->bind('image', $image) // Temporary
 			->set('action', 'Create');
 	}
 
 	/**
 	 * Edit an image
 	 *
-	 * @TODO not done yet
 	 * @param  integer  The id of the image
 	 */
 	public function action_edit($id)
@@ -72,33 +65,23 @@ class Sigal_Controller_Backend_Image extends Controller
 		$form = $image->as_array(); // as_array() is also used in Jelly
 		if ($_POST)
 		{
-			$validation = $image->update_fields($_POST);
-			if($photo->validate())
+			$validation = Sigal::validate_image($_POST);
+			if($validation->check())
 			{
-				if ( ! $_FILES['photo']['error'])
-				{
-					// Delete the old photo before we change it
-					$photo->delete_file();
-					$photo->update();
-					// @TODO: This should be done in the model - Zeelot
-					// Create a thumbnail and resized version
-					$image = new Image($_FILES['photo']['tmp_name']);
-					$image->resize(Kohana::config('photo_gallery.image_width'), Kohana::config('photo_gallery.image_height'), Image::AUTO);
-					$image->save(APPPATH.'views/media/photos/'.$album_url.'/'.$_FILES['photo']['name']);
-					$image->resize(Kohana::config('photo_gallery.thumbnail_width'), Kohana::config('photo_gallery.thumbnail_height'), Image::AUTO);
-					$image->save(APPPATH.'views/media/photos/'.$album_url.'/thumb_'.$_FILES['photo']['name']);
-				}
-				$photo->save();
-				Request::instance()->redirect(Route::url('sigal-backend', array('controller'=>'album', 'action'=>'view', 'id'=>$gallery_id)));
+				$image->update_fields($_POST);
+				$image->save();
+				$this->request->redirect(Route::get('sigal-backend')->uri(array('controller'=>'gallery' , 'action'=>'images' , 'id'=>$image->gallery->id)));
 			}
 			else
 			{
-				$errors = $user->validate()->errors();
+				$form = $validation->as_array();
+				$errors = $validation->errors('sigal');
 			}
 		}
 		$this->request->response = View::factory('sigal/form/image')
 			->bind('errors', $errors)
-			->bind('photo', $photo)
+			->bind('form', $form)
+			->bind('image', $image) // Temporary
 			->set('action', 'Edit');
 	}
 

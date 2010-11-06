@@ -1,9 +1,9 @@
 <?php
-$count = 1; 
+$count = 0;
 $route = Route::get('sigal-backend');
 $button = array('class' => 'button');
 ?>
-<div id="sigal_gallery">
+<div id="sigal_images">
 	<div class="sigal_add">
 	<?php
 	echo html::anchor(
@@ -22,8 +22,8 @@ $button = array('class' => 'button');
 				<?php echo HTML::image(Sigal::image_path($image, TRUE),	array('alt'=>$image->filename, 'rel'=>'image')); ?>
 				<div class="sigal_caption">
 					<p class="sigal_name"><?php echo $image->name; ?></p>
-					<p class="sigal_description"><?php echo $image->description; ?></p>
-					<p class="sigal_order"><?php echo $image->order; ?></p>
+					<p class="sigal_description"><?php echo nl2br($image->description); ?></p>
+					<p class="sigal_order">#<?php echo $image->order; ?></p>
 				</div>
 				<div class="sigal_actions">
 				<?php
@@ -48,7 +48,7 @@ $button = array('class' => 'button');
 	<?php
 		$count++;
 		endforeach;
-		echo View::factory('profiler/stats');
 	?>
 	</ul>
+	<hr class="sigal_clear" />
 </div>

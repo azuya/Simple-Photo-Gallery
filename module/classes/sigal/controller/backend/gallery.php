@@ -123,6 +123,5 @@ class Sigal_Controller_Backend_Gallery extends Controller
 		$gallery = Sigal::factory('gallery')->read_by_id($id);
 		$this->request->response = View::factory('sigal/edit_images')
 			->set('gallery', $gallery);
-			//->set('images', $gallery->read_images());
 	}
 }

@@ -1,5 +1,5 @@
 <?php
-$count = 1; 
+$count = 0;
 $route = Route::get('sigal-backend');
 $button = array('class' => 'button');
 ?>
@@ -20,7 +20,7 @@ $button = array('class' => 'button');
 			<div class="sigal_gallery">
 				<?php
 				echo HTML::image(
-						Sigal::image_path($gallery->thumbnail()),
+						Sigal::image_path($gallery->thumbnail(), TRUE),
 						array('alt'=>$gallery->name)
 					);
 				?>
@@ -58,7 +58,7 @@ $button = array('class' => 'button');
 	<?php
 		$count++;
 		endforeach;
-		echo View::factory('profiler/stats');
 	?>
 	</ul>
+	<hr class="sigal_clear" />
 </div>

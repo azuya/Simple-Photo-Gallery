@@ -51,14 +51,14 @@ class Sigal_Model_Gallery_ORM extends ORM implements Sigal_Interface_Gallery {
 	public function read_images($page = NULL)
 	{
 		if($page == NULL)
-			return $this->images->find_all();
+			return $this->images->order_by('order', 'desc')->find_all();
 		else
 			return $this->images->offset($page)->find_all();
 	}
 
 	public function thumbnail()
 	{
-		return $this->images->find();
+		return $this->images->order_by('order', 'desc')->find();
 	}
 
 

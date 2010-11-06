@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS `sigal_galleries` (
   `order` tinyint(3) unsigned NOT NULL,
   `thumbnail` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `slug` (`slug`)
+  UNIQUE KEY `slug` (`slug`),
+  UNIQUE KEY `order` (`order`)
 ) ;
 
 
@@ -18,4 +19,5 @@ CREATE TABLE IF NOT EXISTS `sigal_images` (
   `gallery_id` int(10) unsigned NOT NULL,
   `date` int(11) unsigned NOT NULL,
   PRIMARY KEY (`id`)
+  UNIQUE KEY `order-gallery` (`gallery_id`,`order`)
 );

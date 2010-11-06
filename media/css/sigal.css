@@ -1,0 +1,93 @@
+/* 
+    Document   : sigal
+    Created on : 3-nov-2010, 10:30:45
+    Author     : Peter
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+
+
+.sigal_clear {
+	clear: both; }
+
+hr.sigal_clear {
+	border: none;
+	margin: 0;
+	padding: 0;
+	visibility: hidden; }
+
+/*
+SIGAL GALLERIES
+*/
+
+#sigal_galleries li,
+#sigal_images li{
+	display: block;
+	float: left;
+	list-style: none;
+	margin-left: 20px;
+	margin-bottom: 20px }
+
+#sigal_galleries li.newline,
+#sigal_images li.newline {
+	clear: left;
+	margin-left: 0; }
+
+#sigal_galleries .sigal_gallery,
+#sigal_images .sigal_image {
+	background-color: #DDD;
+	padding: 5px; }
+
+.sigal_caption {
+	border-top: 1px solid #AAA;
+	margin-top: 2px;
+	position: relative; }
+
+.sigal_caption p {
+	padding: 0; }
+
+p.sigal_title {
+	font-weight: bold;
+	font-size: 26px; }
+
+p.sigal_description {
+	font-style: italic; }
+
+p.sigal_order {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-variant: small-caps;
+	font-size: 8px; }
+
+.sigal_actions {
+	margin-top: 5px; }
+
+.sigal_actions .button,
+.sigal_add .button {
+	padding: 1px;
+	border: 1px solid #000;
+	background-color: #333;
+	color: #FFF;
+	margin-right: 3px;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 9px; }
+
+.sigal_add {
+	margin-bottom: 20px; }
+
+.sigal_add .button {
+	font-size: 150%; }
+/*
+SIGAL GALLERY
+*/
+#sigal_gallery {
+	
+}
