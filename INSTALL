@@ -1,12 +1,13 @@
 To install this simple image gallery, follow these steps:
 
-    * Copy the module folder to your kohana modules directory, and name it 'sigal'
-    * Add MODPATH.'sigal' to your module list in config.php
-    * Copy config/sigal.php to your application folder, and configure it for your environment
-    * Copy the contents of the media folder to where you defined the media-folder in the config.
-    * Chmod 777 the upload folder, defined in your config.
+	* Copy the module folder to your kohana modules directory, and name it 'sigal'
+	* Add MODPATH.'sigal' to your module list in bootstrap.php
+	* Copy the media-folder contents to where your asset-folder
+	* Copy config/sigal.php to your application folder, and configure it for your environment
+	* Chmod 777 the gallery upload path, defined in your config.
+	* Execute TABLES.SQL for your database tables (and modify if you changed the table variables in the config)
 
 OPTIONAL
-    * Ensure that you have no routes that would block /album, /photo, /admin/album and /admin/photo
+	* Copy the routes 'sigal-frontend' & 'sigal-backend' to your bootstrap.php
 	* Have fun!
 

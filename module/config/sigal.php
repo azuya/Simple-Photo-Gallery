@@ -11,15 +11,15 @@ return array(
 		'width' => 150,
 		'height' => 150,
 	),
-	'path' => array(
-		'galleries' => 'media/gallery/', // Make sure this ends with a slash
+	'path' => array(                            // Upload path.
+		'galleries' => 'media/sigal/',      // Make sure this ends with a slash
 	),
 	'table' => array(
 		'galleries' => 'sigal_galleries',
 		'images'	=> 'sigal_images'
 	),
 	'driver' => array(
-		'model'	=> 'ORM', // Automodeler, Jelly,...
-		'auth'	=> 'Auth' // Auth, ACL,...
+		'model'	=> 'ORM',                   // Automodeler, Jelly,...
+		'auth'	=> 'Auth'                   // Auth, ACL,...
 	)
 );

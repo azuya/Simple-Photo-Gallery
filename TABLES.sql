@@ -18,6 +18,6 @@ CREATE TABLE IF NOT EXISTS `sigal_images` (
   `filename` varchar(255) NOT NULL,
   `gallery_id` int(10) unsigned NOT NULL,
   `date` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
   UNIQUE KEY `order-gallery` (`gallery_id`,`order`)
 );
