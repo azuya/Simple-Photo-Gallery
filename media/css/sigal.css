@@ -1,17 +1,11 @@
 /* 
-    Document   : sigal
-    Created on : 3-nov-2010, 10:30:45
+    Document   : Sigal
+    Created on : 3-feb-2011, 10:30:45
     Author     : Peter
     Description:
-        Purpose of the stylesheet follows.
+		This is the (very) basic stylesheet for Sigal,
+		A Simple Image Gallery for Kohana 3.0
 */
-
-/* 
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
-
-
 
 .sigal_clear {
 	clear: both; }
@@ -53,8 +47,8 @@ SIGAL GALLERIES
 	padding: 0; }
 
 p.sigal_title {
-	font-weight: bold;
-	font-size: 26px; }
+	font-style: italic;
+	font-size: 18px; }
 
 p.sigal_description {
 	font-style: italic; }
@@ -67,24 +61,38 @@ p.sigal_order {
 	font-size: 8px; }
 
 .sigal_actions {
-	margin-top: 5px; }
+	margin-top: 5px;
+	text-align: center; }
 
-.sigal_actions .button,
-.sigal_add .button {
-	padding: 1px;
+.sigal_actions a.button,
+.sigal_add a.button {
+	padding: 3px;
 	border: 1px solid #000;
 	background-color: #333;
 	color: #FFF;
 	margin-right: 3px;
+	line-height: 25px;
 	text-decoration: none;
 	text-transform: uppercase;
 	font-size: 9px; }
+
+.sigal_actions a:hover.button,
+.sigal_add a:hover.button {
+	background-color: #666;
+}
 
 .sigal_add {
 	margin-bottom: 20px; }
 
 .sigal_add .button {
 	font-size: 150%; }
+
+/* Replacement for an empty image */
+.sigal_empty {
+	background-color: #fff;
+	padding: 1px;
+	border: 1px solid #333;
+}
 /*
 SIGAL GALLERY
 */

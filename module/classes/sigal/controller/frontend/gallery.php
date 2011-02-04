@@ -26,7 +26,7 @@ class Sigal_Controller_Frontend_Gallery extends Controller {
 			'items_per_page'    => Kohana::config('sigal.items_per_page'),
 		));
 		$this->request->response = View::factory('sigal/images')
-			->set('title', $gallery->name)
+			->bind('gallery', $gallery)
 			->set('images', $gallery->read_images($pagination->offset))
 			->set('pages', $pagination);
 	}

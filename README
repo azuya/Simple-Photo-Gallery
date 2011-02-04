@@ -1,4 +1,4 @@
-SIGAL: Simple Image GALlery v 0.1
+SIGAL: Simple Image GALlery v 0.2
 ---------------------------------
 
 (!) From version 0.1 to 1.0, there will be a lot of breaks in backward compatibility. Please keep this in mind.
@@ -8,10 +8,15 @@ For better incorporation in your own website, it no longer uses a template view 
 It can be used with HMVC.
 Modules it depends on:
  * Image
- * (Cache?)
+ * Cache (not yet)
  * an ORM-module (in v0.1 only the Kohana ORM Models are included, but they can be extended for others...)
  * an Auth-module (in v0.1 only the Kohana Auth module is included, but it can be extended for others...)
 
 Please refer to the INSTALL file for installation instructions.
 
-To stay current, check this module's web page at http://projects.kohanaphp.com/projects/show/simple-photo-gallery
+You can find the source at Github:
+https://github.com/peebeebee/Simple-Photo-Gallery/tree/3.0
+
+Very basic running demo can be found at http://sigal.peterbriers.be
+
+Source of the demo can be found at http://sigal.peterbriers.be/sigal.zip

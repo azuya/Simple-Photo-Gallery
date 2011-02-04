@@ -18,12 +18,7 @@ $button = array('class' => 'button');
 	<?php foreach ($galleries as $gallery): ?>
 		<li <?php if ($count % Kohana::config('sigal.columns') == 0) echo 'class="newline"'; ?> >
 			<div class="sigal_gallery">
-				<?php
-				echo HTML::image(
-						Sigal::image_path($gallery->thumbnail(), TRUE),
-						array('alt'=>$gallery->name)
-					);
-				?>
+				<?php echo Sigal::image($gallery->thumbnail(), TRUE, FALSE, array('alt'=>$gallery->name)); ?>
 				<div class="sigal_caption">
 					<p class="sigal_name"><?php echo $gallery->name; ?></p>
 					<p class="sigal_order"><?php echo $gallery->order; ?></p>
@@ -44,6 +39,9 @@ $button = array('class' => 'button');
 						'id' => $gallery->id)),
 					__('Edit'),
 					$button);
+				?>
+				<br />
+				<?php
 				echo HTML::anchor(
 					$route->uri(array(
 						'controller' => 'gallery',

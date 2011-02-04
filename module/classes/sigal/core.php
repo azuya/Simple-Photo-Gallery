@@ -12,6 +12,16 @@
 
 abstract class Sigal_Core {
 
+	public static $route_frontend_galleries = array(
+		'controller'=>'gallery',
+	);
+	public static $route_frontend_images = array(
+
+	);
+
+	public static $route_backend_galleries = array();
+
+
 	/**
 	 * Creates and returns a new model, based on the model drivers
 	 *
@@ -52,7 +62,7 @@ abstract class Sigal_Core {
 	 * Shorthand for (DOCROOT.)Kohana::config('sigal.path.galleries').$image->gallery->slug.'/'.$image->filename
 	 * Used in the views.
 	 *
-	 * @param  object  The image object
+	 * @param  object   The image object
 	 * @param  boolean  Create a path to the thumbnail or not
 	 * @param  boolean  Return the absolute path
 	 * @return string
@@ -64,6 +74,24 @@ abstract class Sigal_Core {
 			return DOCROOT.Kohana::config('sigal.path.galleries').$image->gallery->slug.'/'.$filename;
 		else
 			return Kohana::config('sigal.path.galleries').$image->gallery->slug.'/'.$filename;
+	}
+
+	/**
+	 * Gets the HTML for an image-object. If the object does not exist, it returns a div.sigal_empty instead of an img-tag
+	 * 
+	 * @param  object   The image object
+	 * @param  boolean  Create a path to the thumbnail or not
+	 * @param  boolean  Return the absolute path
+	 * @return HTML
+	 */
+	public static function image($image, $thumb = FALSE, $absolute = FALSE, array $attributes = NULL)
+	{
+		$w = Kohana::config('sigal.thumbnail.width');
+		$h = Kohana::config('sigal.thumbnail.height');
+		$html = ($image->loaded())
+			? HTML::image(Sigal::image_path($image, $thumb, $absolute), $attributes)
+			: "<div class='sigal_empty' style='width: {$w}px; height: {$h}px;'></div>";
+		return $html;
 	}
 
 	/**
@@ -137,11 +165,17 @@ abstract class Sigal_Core {
 	 * @param  object  Gallery-object
 	 * @return  string  The new slug
 	 */
+	// Todo: gives an error when you try to add a slug with the same name 2x
 	public static function set_slug(& $gallery)
 	{
 		$path = DOCROOT.Kohana::config('sigal.path.galleries');
 		$old_slug = $gallery->slug;
 		$new_slug = URL::title($gallery->name, '-', TRUE);
+		// If this slug is already
+		if(file_exists($path.$new_slug))
+		{
+			return false;
+		}
 		if($old_slug != $new_slug)
 		{
 			if(file_exists($path.$old_slug) && !empty($old_slug))
@@ -189,8 +223,24 @@ abstract class Sigal_Core {
 	 */
 	public static function delete_folder($folder)
 	{
+		// http://us3.php.net/manual/en/function.rmdir.php#98622
+		$return = false;
 		$path = Kohana::config('sigal.path.galleries');
-		return rmdir(DOCROOT.$path.$folder);
+		$dir = DOCROOT.$path.$folder;
+		if (is_dir($dir))
+		{
+			$objects = scandir($dir);
+			foreach ($objects as $object)
+			{
+				if ($object != "." && $object != "..")
+				{
+					if (filetype($dir."/".$object) == "dir") rrmdir($dir."/".$object); else unlink($dir."/".$object);
+				}
+			}
+			reset($objects);
+			$return = rmdir($dir);
+		}
+		return $return;
 	}
 
 	/**

@@ -3,6 +3,7 @@ $count = 0;
 $route = Route::get('sigal-backend');
 $button = array('class' => 'button');
 ?>
+<p class="sigal_title"><?php echo $gallery->name ?></p>
 <div id="sigal_images">
 	<div class="sigal_add">
 	<?php
@@ -51,4 +52,5 @@ $button = array('class' => 'button');
 	?>
 	</ul>
 	<hr class="sigal_clear" />
+	<?php echo HTML::anchor($route->uri(array('controller' => 'gallery', 'action' => 'index')), __('Back to the galleries'));	?>
 </div>

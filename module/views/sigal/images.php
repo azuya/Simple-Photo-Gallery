@@ -1,5 +1,6 @@
 <?php $count = 0; ?>
-<p class="sigal_title"><?php echo $title ?></p>
+<p class="sigal_title"><?php echo $gallery->name ?></p>
+<?php echo HTML::anchor(Route::get('sigal-frontend')->uri(array('controller'=>'gallery')), '&laquo;'.__('Back to the galleries')); ?>
 <div class="sigal_pages"><?php echo $pages ?></div>
 <div id="sigal_images">
 	<ul>
@@ -26,3 +27,4 @@
 	</ul>
 	<hr class="sigal_clear" />
 </div>
+<?php echo HTML::anchor(Route::get('sigal-frontend')->uri(array('controller'=>'gallery')), '&laquo;'.__('Back to the galleries')); ?>
