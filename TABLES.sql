@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS `sigal_galleries` (
   UNIQUE KEY `order` (`order`)
 ) ;
 
-
 CREATE TABLE IF NOT EXISTS `sigal_images` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
